@@ -188,7 +188,31 @@ python manage.py runserver
 
 Server will start at: `http://localhost:8000`
 
-## 📚 API Endpoints
+## 🚀 Deploying to Render
+
+This project is ready for Render deployment.
+
+1. Push your code to GitHub (`main` branch).
+2. Create a new Web Service on Render.
+3. Connect your GitHub repository and select the `main` branch.
+4. Use the following settings:
+   - Environment: `Python 3`
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `gunicorn billing_project.wsgi:application`
+   - Plan: `Free`
+5. Add environment variables in Render:
+   - `SECRET_KEY` — a strong secret key
+   - `DEBUG` — `False`
+   - `ALLOWED_HOSTS` — your Render hostname (for example `billing-system.onrender.com`)
+   - `DATABASE_URL` — provided by Render Postgres if you add a managed database
+   - `EMAIL_BACKEND` — `django.core.mail.backends.smtp.EmailBackend` or console backend for testing
+   - `EMAIL_HOST`, `EMAIL_PORT`, `EMAIL_USE_TLS`, `EMAIL_HOST_USER`, `EMAIL_HOST_PASSWORD`
+
+If you want Render to manage a database for you, create a free PostgreSQL database service and set `DATABASE_URL` from the generated connection string.
+
+You can also use the included `render.yaml` file to configure the Render service automatically.
+
+## �📚 API Endpoints
 
 ### Authentication
 

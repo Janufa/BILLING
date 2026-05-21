@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: billing-system
+    env: python
+    region: oregon
+    plan: free
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn billing_project.wsgi:application
+    envVars:
+      - key: DEBUG
+        value: "False"
+      - key: SECRET_KEY
+        value: "REPLACE_WITH_SECRET"
+      - key: ALLOWED_HOSTS
+        value: "billing-system.onrender.com,localhost,127.0.0.1"
+
+# Optional managed Postgres database service. Remove if you want to use SQLite on Render.
+databases:
+  - name: billing-db
+    databaseName: billing_db
+    region: oregon
+    plan: free
