@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>My Bills</h2>
+    {% if bills %}
+    <div class="grid">
+        {% for bill in bills %}
+        <div class="card">
+            <h3>Bill {{ bill.bill_number }}</h3>
+            <p><strong>Date:</strong> {{ bill.bill_date|date:'Y-m-d' }}</p>
+            <p><strong>Total:</strong> ${{ bill.total_amount }}</p>
+            <p><strong>Status:</strong> {{ bill.get_status_display }}</p>
+            <a class="button" href="{% url 'bill_detail' bill.bill_number %}">View</a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>No bills found.</p>
+    {% endif %}
+</div>
+{% endblock %}

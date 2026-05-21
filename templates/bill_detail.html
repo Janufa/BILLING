@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Bill {{ bill.bill_number }}</h2>
+    <p><strong>Date:</strong> {{ bill.bill_date|date:'Y-m-d' }}</p>
+    <p><strong>Amount:</strong> ${{ bill.amount }}</p>
+    <p><strong>Tax:</strong> ${{ bill.tax }}</p>
+    <p><strong>Total:</strong> ${{ bill.total_amount }}</p>
+    {% if bill.pdf_file %}
+    <a class="button secondary" href="{{ bill.pdf_file.url }}" target="_blank">Download PDF</a>
+    {% endif %}
+</div>
+{% endblock %}

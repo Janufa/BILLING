@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <h2>Payment Successful</h2>
+    <p>Your bill has been generated successfully and sent to your email address if provided.</p>
+</div>
+
+<div class="card">
+    <p><strong>Bill Number:</strong> {{ bill.bill_number }}</p>
+    <p><strong>Bill Date:</strong> {{ bill.bill_date|date:'Y-m-d' }}</p>
+    <p><strong>Total Amount:</strong> ${{ bill.total_amount }}</p>
+    <p><strong>Status:</strong> {{ bill.get_status_display }}</p>
+    <p><strong>Due Date:</strong> {{ bill.due_date|date:'Y-m-d' }}</p>
+</div>
+
+<div class="card">
+    <a class="button" href="{% url 'course_checkout' bill.enrollment.course.id %}">Enroll Another Course</a>
+    {% if bill.pdf_file %}
+    <a class="button secondary" href="{{ bill.pdf_file.url }}" target="_blank">Download Invoice PDF</a>
+    {% endif %}
+</div>
+{% endblock %}

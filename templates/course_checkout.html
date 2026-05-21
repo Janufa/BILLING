@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="padding: 34px;">
+    <h2 style="margin-top:0;">Secure checkout for {{ course.title }}</h2>
+    <p style="color:#475569; margin-top:10px;">Complete your premium enrollment and receive an invoice automatically after checkout.</p>
+</div>
+
+{% if error_message %}
+<div class="alert">{{ error_message }}</div>
+{% endif %}
+
+<div class="grid">
+    <div class="card" style="padding: 28px;">
+        <form method="post">
+            {% csrf_token %}
+            <div class="field-group">
+                <label class="field-label" for="first_name">First Name</label>
+                <input class="field-input" id="first_name" name="first_name" type="text" required>
+            </div>
+            <div class="field-group">
+                <label class="field-label" for="last_name">Last Name</label>
+                <input class="field-input" id="last_name" name="last_name" type="text" required>
+            </div>
+            <div class="field-group">
+                <label class="field-label" for="student_id">Student ID <small style="font-weight:normal;color:#64748b;">(optional — generated automatically)</small></label>
+                <input class="field-input" id="student_id" name="student_id" type="text">
+            </div>
+            <div class="field-group">
+                <label class="field-label" for="email">Email</label>
+                <input class="field-input" id="email" name="email" type="email" required>
+            </div>
+            <div class="field-group">
+                <label class="field-label" for="phone">Phone</label>
+                <input class="field-input" id="phone" name="phone" type="tel">
+            </div>
+            <div class="field-group">
+                <label class="field-label" for="payment_method">Payment Method</label>
+                <select class="field-select" id="payment_method" name="payment_method">
+                    <option value="credit_card">Credit Card</option>
+                    <option value="debit_card">Debit Card</option>
+                    <option value="net_banking">Net Banking</option>
+                    <option value="wallet">Digital Wallet</option>
+                </select>
+            </div>
+            <div class="field-group">
+                <p><strong>Amount to pay:</strong> ${{ course.price }}</p>
+            </div>
+            <button class="button" type="submit">Pay ${{ course.price }}</button>
+        </form>
+    </div>
+    <div class="card" style="padding: 28px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+            <h3 style="margin-top:0;">Why enroll now?</h3>
+            <ul style="padding-left:20px; color:#475569; line-height:1.9;">
+                <li>Instant invoice with every payment.</li>
+                <li>Premium course support and learning paths.</li>
+                <li>Secure mock checkout experience.</li>
+                <li>Email confirmation sent automatically.</li>
+            </ul>
+        </div>
+        <div style="margin-top:20px;">
+            <span class="feature-pill">Secure payment</span>
+            <span class="feature-pill">Fast invoice</span>
+        </div>
+    </div>
+</div>
+{% endblock %}

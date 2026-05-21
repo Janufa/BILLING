@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card" style="padding: 36px;">
+    <h2 class="section-heading">Premium learning tracks for modern professionals</h2>
+    <p class="section-subtitle">Choose a premium course, enroll instantly, and receive your invoice automatically. Build real skills with expert-led programs designed for fast career growth.</p>
+    <div>
+        <span class="feature-pill">Practical projects</span>
+        <span class="feature-pill">Instant billing</span>
+        <span class="feature-pill">Certificate-ready</span>
+        <span class="feature-pill">Flexible learning</span>
+    </div>
+</div>
+
+<div id="courses" class="grid">
+    {% for course in courses %}
+    <div class="card course-card">
+        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=900&q=80&ixlib=rb-4.0.3&sig={{ course.id }}" class="course-thumb" alt="{{ course.title }}">
+        <div class="course-card-body">
+            <div class="course-badge">{{ course.get_level_display }}</div>
+            <h3>{{ course.title }}</h3>
+            <p class="course-price">${{ course.price }}</p>
+            <p class="course-meta"><strong>Code:</strong> {{ course.code }} &nbsp;|&nbsp; <strong>Duration:</strong> {{ course.duration_weeks }} weeks</p>
+            <p>{{ course.description }}</p>
+            <p class="course-meta"><strong>Instructor:</strong> {{ course.instructor }}</p>
+            <a class="button" href="{% url 'course_checkout' course.id %}">Enroll &amp; Pay</a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="card">
+        <p>No courses are available at the moment.</p>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="contact" class="card">
+    <h2 class="section-heading">Contact Us</h2>
+    <p class="section-subtitle">Have a question about enrollment, billing, or available tracks? Reach out anytime and we’ll respond quickly.</p>
+    <p><strong>Email:</strong> <a href="mailto:support@example.com">support@example.com</a></p>
+    <p><strong>Phone:</strong> +1-555-0100</p>
+</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        html { scroll-behavior: smooth; }
+        body { margin: 0; font-family: 'Inter', Arial, Helvetica, sans-serif; background: radial-gradient(circle at top, #f5f8ff 0%, #e8edf7 35%, #f9fbfd 100%); color: #1d2939; }
+        .site-header { background: linear-gradient(135deg, #1f3a8a 0%, #2f56c2 50%, #00b4d8 100%); color: white; padding: 30px 30px 20px; border-bottom: 1px solid rgba(255,255,255,0.16); }
+        .site-header h1 { margin: 0; font-size: 36px; letter-spacing: -0.02em; }
+        .site-header p { margin: 10px 0 0; font-size: 16px; color: rgba(255,255,255,0.9); max-width: 760px; line-height: 1.7; }
+        .site-nav { margin-top: 20px; display:flex; flex-wrap:wrap; gap:12px; }
+        .site-nav a { color: white; text-decoration: none; padding: 10px 16px; border-radius: 999px; background: rgba(255,255,255,0.12); transition: background .2s ease; font-weight: 600; }
+        .site-nav a:hover { background: rgba(255,255,255,0.22); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .card { background: rgba(255,255,255,0.95); border: 1px solid rgba(15, 23, 42, 0.05); border-radius: 24px; box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08); padding: 28px; margin-bottom: 24px; }
+        .button { background: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%); color: white; border: none; border-radius: 12px; padding: 14px 22px; letter-spacing: .5px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: 700; transition: transform .2s ease, box-shadow .2s ease; }
+        .button:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(30, 64, 175, .24); }
+        .button.secondary { background: #1f2937; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; }
+        .field-group { margin-bottom: 18px; }
+        .field-label { display: block; margin-bottom: 8px; font-weight: 600; color: #334155; }
+        .field-input, .field-select, .field-textarea { width: 100%; padding: 14px 16px; border: 1px solid #cbd5e1; border-radius: 16px; font-size: 15px; background: #f8fafc; color: #0f172a; }
+        .field-input:focus, .field-select:focus, .field-textarea:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 4px rgba(59,130,246,.12); }
+        .alert { padding: 16px 20px; background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; border-radius: 14px; margin-bottom: 20px; }
+        .footer { text-align: center; padding: 18px 10px; color: #64748b; font-size: 14px; }
+        .course-price { font-size: 24px; font-weight: 700; margin: 0; color: #0f172a; }
+        .course-meta { color: #64748b; margin: 10px 0 0; }
+        .hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:24px; padding: 32px; background: rgba(255,255,255,0.14); border-radius: 28px; margin-top: 18px; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.24); text-align:center; }
+        .hero img { max-width:520px; width:100%; border-radius: 22px; box-shadow: 0 26px 66px rgba(15, 23, 42, 0.18); margin: 0 auto; }
+        .hero .hero-copy { flex:1; min-width:320px; margin:auto; }
+        .course-thumb { width:100%; height:180px; object-fit:cover; border-radius: 20px 20px 0 0; }
+        .course-card-body { padding: 20px; }
+        .course-card { overflow:hidden; transition: transform .2s ease, box-shadow .2s ease; }
+        .course-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14); }
+        .course-badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; font-size:13px; background: rgba(59,130,246,0.12); color:#1d4ed8; margin-bottom:14px; font-weight:700; }
+        .feature-pill { display:inline-block; padding: 10px 16px; border-radius: 999px; background: rgba(15, 23, 42, 0.05); color: #0f172a; margin-right: 10px; margin-bottom: 10px; font-size: 13px; }
+        .section-heading { font-size: 28px; margin-bottom: 12px; }
+        .section-subtitle { color: #475569; line-height:1.8; margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1>Student Billing System</h1>
+            <p>Register, enroll, pay online, and receive an invoice automatically.</p>
+            <div class="site-nav">
+                <a href="/">Home</a>
+                <a href="/#courses">Courses</a>
+                <a href="/bills/">My Bills</a>
+                <a href="/#contact">Contact</a>
+            </div>
+            <div class="hero">
+                <div class="hero-copy">
+                    <h2 style="margin:0 0 8px 0;">Simple billing. Fast enrollment.</h2>
+                    <p style="margin:0 0 12px 0; color:#f0f6ff; opacity:0.95">Choose a course, checkout in minutes, and get an invoice emailed to you automatically.</p>
+                    <a class="button" href="/#courses">Browse Courses</a>
+                </div>
+                <img src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?auto=format&fit=crop&w=1200&q=80" alt="education-hero" />
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        &copy; {% now "Y" %} Billing System. Built for student course registration and auto billing.
+    </footer>
+</body>
+</html>
